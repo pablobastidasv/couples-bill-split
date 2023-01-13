@@ -1,4 +1,4 @@
-import 'package:couple_budget_calculator/budget/calculator/application/participants_contribution_controller.dart';
+import 'package:couple_budget_calculator/budget/calculator/controller/participants_contribution_controller.dart';
 import 'package:couple_budget_calculator/budget/calculator/domain/models.dart';
 import 'package:couple_budget_calculator/budget/calculator/views/pages/budget_calculator.dart';
 import 'package:decimal/decimal.dart';

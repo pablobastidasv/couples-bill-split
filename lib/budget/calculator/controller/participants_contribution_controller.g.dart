@@ -30,7 +30,7 @@ class _SystemHash {
 }
 
 String _$ParticipantsContributionControllerHash() =>
-    r'06b8c16d32098dc6651dab4376739652aa3cbe6e';
+    r'109f072e83d4250968695d3fefd9c6d5504501f5';
 
 /// See also [ParticipantsContributionController].
 final participantsContributionControllerProvider =

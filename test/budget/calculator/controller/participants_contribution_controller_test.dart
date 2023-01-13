@@ -1,20 +1,14 @@
-import 'package:couple_budget_calculator/budget/calculator/application/participants_contribution_controller.dart';
+import 'package:couple_budget_calculator/budget/calculator/controller/participants_contribution_controller.dart';
 import 'package:couple_budget_calculator/budget/calculator/domain/models.dart';
 import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/repository.dart';
 import 'package:couple_budget_calculator/budget/calculator/shared/providers.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class MockRepository implements Repository {
+class MyMockRepository implements Repository {
   static final A = Person("Pablo B.", Decimal.fromInt(600));
   static final B = Person("Vivi R.", Decimal.fromInt(400));
-
-  @override
-  Future<Group> mainGroup() async {
-    return Group.load("main", [A, B]);
-  }
 
   @override
   Future<Group?> findByName(String groupName) async {
@@ -29,7 +23,7 @@ class MockRepository implements Repository {
   }
 }
 
-ProviderContainer makeProviderContainer(MockRepository repository) {
+ProviderContainer makeProviderContainer(MyMockRepository repository) {
   final container = ProviderContainer(
     overrides: [
       repositoryProvider.overrideWith((_) => repository),
@@ -41,7 +35,7 @@ ProviderContainer makeProviderContainer(MockRepository repository) {
 
 main() {
   test('nothing', () async {
-    final repository = MockRepository();
+    final repository = MyMockRepository();
     final container = makeProviderContainer(repository);
     final calculator = container.read(participantsContributionControllerProvider.notifier);
     await calculator.splitTheBill(Decimal.fromInt(50));
@@ -54,11 +48,11 @@ main() {
           expect(participants.length, equals(2));
 
           expect(
-            participants.where((element) => element.person.name == MockRepository.A.name).first.contribution,
+            participants.where((element) => element.person.name == MyMockRepository.A.name).first.contribution,
             equals(Decimal.fromInt(30)),
           );
           expect(
-            participants.where((element) => element.person.name == MockRepository.B.name).first.contribution,
+            participants.where((element) => element.person.name == MyMockRepository.B.name).first.contribution,
             equals(Decimal.fromInt(20)),
           );
         });

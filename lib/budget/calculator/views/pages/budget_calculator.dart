@@ -1,4 +1,4 @@
-import 'package:couple_budget_calculator/budget/calculator/application/participants_contribution_controller.dart';
+import 'package:couple_budget_calculator/budget/calculator/controller/participants_contribution_controller.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

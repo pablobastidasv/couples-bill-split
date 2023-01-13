@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:decimal/decimal.dart';
 
 class Group {
@@ -41,7 +39,6 @@ class ParticipantContribution {
   String get name => person.name;
 
   Decimal get contribution {
-    log('$totalBill * ${person.contributionPercentage}');
     return totalBill * person.contributionPercentage;
   }
 }

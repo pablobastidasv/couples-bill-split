@@ -5,9 +5,6 @@ import 'package:isar/isar.dart';
 import '../../domain/models.dart';
 
 abstract class Repository {
-  @deprecated
-  Future<Group> mainGroup();
-
   Future<void> save(Group group);
 
   Future<Group?> findByName(String groupName);
@@ -16,16 +13,6 @@ abstract class Repository {
 class IsarRepository implements Repository {
   final Isar isar;
   IsarRepository(this.isar);
-
-  @override
-  Future<Group> mainGroup() async {
-    final groupModel = await isar.groupIsarModels.filter().nameIsNotEmpty().findFirst();
-    if (groupModel == null) throw Exception("Main group not found.");
-
-    final people =
-        groupModel.participants?.map((e) => Person(e.name!, Decimal.parse(e.income!))).toList() ?? <Person>[];
-    return Group.load(groupModel.name ?? "main", people);
-  }
 
   @override
   Future<void> save(Group group) async {
