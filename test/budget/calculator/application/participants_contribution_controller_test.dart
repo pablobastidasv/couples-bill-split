@@ -15,6 +15,18 @@ class MockRepository implements Repository {
   Future<Group> mainGroup() async {
     return Group.load("main", [A, B]);
   }
+
+  @override
+  Future<Group?> findByName(String groupName) async {
+    // TODO: implement findByName
+    return Group.load("main", [A, B]);
+  }
+
+  @override
+  Future<void> save(Group group) {
+    // TODO: implement save
+    throw UnimplementedError();
+  }
 }
 
 ProviderContainer makeProviderContainer(MockRepository repository) {
