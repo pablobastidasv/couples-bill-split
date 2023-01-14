@@ -1,3 +1,4 @@
+import 'package:couple_budget_calculator/budget/calculator/application/calculate_contribution_main_group.dart';
 import 'package:couple_budget_calculator/budget/calculator/controller/participants_contribution_controller.dart';
 import 'package:couple_budget_calculator/budget/calculator/domain/models.dart';
 import 'package:couple_budget_calculator/budget/calculator/views/pages/budget_calculator.dart';
@@ -81,6 +82,13 @@ class MockCalculator extends ParticipantsContributionController {
 
   @override
   Future<void> splitTheBill(Decimal totalBill) async {
-    state = AsyncValue.data(mainGroup.contributionsFor(totalBill));
+    state = AsyncValue.data(
+      mainGroup
+          .contributionsFor(totalBill)
+          .map(
+            (e) => Contribution(e.name, e.contribution),
+          )
+          .toList(),
+    );
   }
 }

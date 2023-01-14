@@ -1,33 +1,27 @@
+import 'package:couple_budget_calculator/budget/calculator/application/calculate_contribution_main_group.dart';
 import 'package:couple_budget_calculator/budget/calculator/controller/participants_contribution_controller.dart';
-import 'package:couple_budget_calculator/budget/calculator/domain/models.dart';
 import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/repository.dart';
 import 'package:couple_budget_calculator/budget/calculator/shared/providers.dart';
 import 'package:decimal/decimal.dart';
+import 'package:faker/faker.dart' as f;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
-class MyMockRepository implements Repository {
-  static final A = Person("Pablo B.", Decimal.fromInt(600));
-  static final B = Person("Vivi R.", Decimal.fromInt(400));
+@GenerateNiceMocks([MockSpec<Repository>(), MockSpec<CalculateContributionInMainGroup>()])
+import 'participants_contribution_controller_test.mocks.dart';
 
-  @override
-  Future<Group?> findByName(String groupName) async {
-    // TODO: implement findByName
-    return Group.load("main", [A, B]);
-  }
+final faker = f.Faker();
 
-  @override
-  Future<void> save(Group group) {
-    // TODO: implement save
-    throw UnimplementedError();
-  }
-}
+final contributions = [
+  Contribution(faker.person.name(), Decimal.fromInt(faker.randomGenerator.integer(100))),
+  Contribution(faker.person.name(), Decimal.fromInt(faker.randomGenerator.integer(100))),
+];
 
-ProviderContainer makeProviderContainer(MyMockRepository repository) {
+ProviderContainer makeProviderContainer(MockCalculateContributionInMainGroup calculator) {
   final container = ProviderContainer(
-    overrides: [
-      repositoryProvider.overrideWith((_) => repository),
-    ],
+    overrides: [calculateContributionInMainGroupProvider.overrideWith((_) => calculator)],
   );
   addTearDown(container.dispose);
   return container;
@@ -35,26 +29,24 @@ ProviderContainer makeProviderContainer(MyMockRepository repository) {
 
 main() {
   test('nothing', () async {
-    final repository = MyMockRepository();
-    final container = makeProviderContainer(repository);
-    final calculator = container.read(participantsContributionControllerProvider.notifier);
-    await calculator.splitTheBill(Decimal.fromInt(50));
+    final calculator = MockCalculateContributionInMainGroup();
+    final container = makeProviderContainer(calculator);
+    final bill = Decimal.fromInt(50);
+
+    when(calculator.splitBill(bill)).thenAnswer((realInvocation) => Future.value(contributions));
+
+    final controller = container.read(participantsContributionControllerProvider.notifier);
+    await controller.splitTheBill(bill);
 
     final value = container.listen(participantsContributionControllerProvider, (_, __) {});
 
     value.read().maybeWhen(
-        orElse: () => expect(1, equals(2)),
-        data: (participants) {
-          expect(participants.length, equals(2));
+          orElse: () => expect(1, equals(2)),
+          data: (participants) {
+            expect(participants.length, equals(2));
 
-          expect(
-            participants.where((element) => element.person.name == MyMockRepository.A.name).first.contribution,
-            equals(Decimal.fromInt(30)),
-          );
-          expect(
-            participants.where((element) => element.person.name == MyMockRepository.B.name).first.contribution,
-            equals(Decimal.fromInt(20)),
-          );
-        });
+            expect(participants, containsAll(contributions));
+          },
+        );
   });
 }

@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:couple_budget_calculator/budget/calculator/application/calculate_contribution_main_group.dart';
 import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/models.dart';
 import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/repository.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -18,6 +18,14 @@ Future<Repository> repository(RepositoryRef ref) async {
   await loadInitialData(isar);
 
   return IsarRepository(isar);
+}
+
+@riverpod
+Future<CalculateContributionInMainGroup> calculateContributionInMainGroup(
+    CalculateContributionInMainGroupRef ref) async {
+  final repository = await ref.read(repositoryProvider.future);
+
+  return CalculateContributionInMainGroup(repository);
 }
 
 Future<void> loadInitialData(Isar isar) async {

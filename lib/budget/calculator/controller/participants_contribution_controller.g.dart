@@ -30,12 +30,12 @@ class _SystemHash {
 }
 
 String _$ParticipantsContributionControllerHash() =>
-    r'109f072e83d4250968695d3fefd9c6d5504501f5';
+    r'fd4ad46a4b5d6fbe7e6e0f0b5c43121d9e673830';
 
 /// See also [ParticipantsContributionController].
 final participantsContributionControllerProvider =
     AutoDisposeAsyncNotifierProvider<ParticipantsContributionController,
-        List<ParticipantContribution>>(
+        List<Contribution>>(
   ParticipantsContributionController.new,
   name: r'participantsContributionControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -43,10 +43,10 @@ final participantsContributionControllerProvider =
       : _$ParticipantsContributionControllerHash,
 );
 typedef ParticipantsContributionControllerRef
-    = AutoDisposeAsyncNotifierProviderRef<List<ParticipantContribution>>;
+    = AutoDisposeAsyncNotifierProviderRef<List<Contribution>>;
 
 abstract class _$ParticipantsContributionController
-    extends AutoDisposeAsyncNotifier<List<ParticipantContribution>> {
+    extends AutoDisposeAsyncNotifier<List<Contribution>> {
   @override
-  FutureOr<List<ParticipantContribution>> build();
+  FutureOr<List<Contribution>> build();
 }

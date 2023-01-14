@@ -1,23 +1,22 @@
 import 'dart:async';
 
+import 'package:couple_budget_calculator/budget/calculator/shared/providers.dart';
 import 'package:decimal/decimal.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../domain/models.dart';
+import '../application/calculate_contribution_main_group.dart';
 
 part 'participants_contribution_controller.g.dart';
 
 @riverpod
 class ParticipantsContributionController extends _$ParticipantsContributionController {
   @override
-  FutureOr<List<ParticipantContribution>> build() => [];
+  FutureOr<List<Contribution>> build() => [];
 
   Future<void> splitTheBill(Decimal totalBill) async {
     state = const AsyncValue.loading();
-    // final repository = await ref.read(repositoryProvider.future);
-    // final group = await repository.mainGroup();
-    // final contributions = group.contributionsFor(totalBill);
-    //
-    // state = AsyncValue.data(contributions);
+    final calculator = await ref.read(calculateContributionInMainGroupProvider.future);
+    final contributions = await calculator.splitBill(totalBill);
+    state = AsyncValue.data(contributions);
   }
 }
