@@ -8,7 +8,7 @@ class CalculateContributionInMainGroup {
   CalculateContributionInMainGroup(this.repository);
 
   Future<List<Contribution>> splitBill(Decimal totalBill) async {
-    final group = await repository.findByName("main");
+    final group = await repository.findByName("Main");
     if (group == null) throw Exception("Main group not defined");
     return group.contributionsFor(totalBill).map((e) => Contribution(e.name, e.contribution)).toList();
   }
