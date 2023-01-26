@@ -49,6 +49,17 @@ final repositoryProvider = FutureProvider<Repository>(
       const bool.fromEnvironment('dart.vm.product') ? null : _$repositoryHash,
 );
 typedef RepositoryRef = FutureProviderRef<Repository>;
+String _$saveMainGroupHash() => r'055d7c5e8090c17f086dc0cfc0148214a0ccebdb';
+
+/// See also [saveMainGroup].
+final saveMainGroupProvider = AutoDisposeFutureProvider<SaveMainGroup>(
+  saveMainGroup,
+  name: r'saveMainGroupProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$saveMainGroupHash,
+);
+typedef SaveMainGroupRef = AutoDisposeFutureProviderRef<SaveMainGroup>;
 String _$calculateContributionInMainGroupHash() =>
     r'cc31f426e2d1ed89c13fffa91618cb1f1e99e1c4';
 

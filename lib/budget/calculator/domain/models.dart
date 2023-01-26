@@ -1,20 +1,26 @@
 import 'package:decimal/decimal.dart';
 
 class Group {
-  final List<Person> people;
+  List<Person> _people;
   final String name;
 
-  Group._(this.name, this.people);
+  List<Person> get people => List.from(_people);
+
+  Group._(this.name, this._people);
 
   factory Group.create(String name) => Group._(name, []);
   factory Group.load(String name, List<Person> people) => Group._(name, people);
 
-  Decimal get totalIncome => people.map((p) => p.income).reduce((value, element) => value + element);
+  Decimal get totalIncome => _people.map((p) => p.income).reduce((value, element) => value + element);
 
-  List<PersonInGroup> get _personInGroup => people.map((e) => PersonInGroup(e, totalIncome)).toList();
+  List<PersonInGroup> get _personInGroup => _people.map((e) => PersonInGroup(e, totalIncome)).toList();
 
   List<ParticipantContribution> contributionsFor(Decimal billToSplit) =>
       _personInGroup.map((e) => ParticipantContribution(e, billToSplit)).toList();
+
+  void changeParticipants(List<Person> people) {
+    _people = people;
+  }
 }
 
 class PersonInGroup extends Person {

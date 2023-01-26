@@ -1,6 +1,5 @@
 import 'package:couple_budget_calculator/budget/calculator/application/calculate_contribution_main_group.dart';
 import 'package:couple_budget_calculator/budget/calculator/controller/participants_contribution_controller.dart';
-import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/repository.dart';
 import 'package:couple_budget_calculator/budget/calculator/shared/providers.dart';
 import 'package:decimal/decimal.dart';
 import 'package:faker/faker.dart' as f;
@@ -9,7 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-@GenerateNiceMocks([MockSpec<Repository>(), MockSpec<CalculateContributionInMainGroup>()])
+@GenerateNiceMocks([MockSpec<CalculateContributionInMainGroup>()])
 import 'participants_contribution_controller_test.mocks.dart';
 
 final faker = f.Faker();
@@ -28,7 +27,7 @@ ProviderContainer makeProviderContainer(MockCalculateContributionInMainGroup cal
 }
 
 main() {
-  test('nothing', () async {
+  test('given a bill to split, then the application service is invoked and the status updated', () async {
     final calculator = MockCalculateContributionInMainGroup();
     final container = makeProviderContainer(calculator);
     final bill = Decimal.fromInt(50);

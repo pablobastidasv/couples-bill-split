@@ -20,6 +20,7 @@ dependencies:
   riverpod_annotation: 1.1.1
   isar: *isar_version
   isar_flutter_libs: *isar_version
+  form_validator: ^2.1.1
 
 #  cupertino_icons: ^1.0.2
 
@@ -29,7 +30,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
   build_runner: ^2.3.3
   freezed: ^2.3.2
   isar_generator: *isar_version

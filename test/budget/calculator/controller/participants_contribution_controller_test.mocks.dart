@@ -3,15 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
 import 'package:couple_budget_calculator/budget/calculator/application/calculate_contribution_main_group.dart'
-    as _i5;
-import 'package:couple_budget_calculator/budget/calculator/domain/models.dart'
-    as _i4;
+    as _i3;
 import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/repository.dart'
     as _i2;
-import 'package:decimal/decimal.dart' as _i6;
+import 'package:decimal/decimal.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -35,35 +33,11 @@ class _FakeRepository_0 extends _i1.SmartFake implements _i2.Repository {
         );
 }
 
-/// A class which mocks [Repository].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockRepository extends _i1.Mock implements _i2.Repository {
-  @override
-  _i3.Future<void> save(_i4.Group? group) => (super.noSuchMethod(
-        Invocation.method(
-          #save,
-          [group],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<_i4.Group?> findByName(String? groupName) => (super.noSuchMethod(
-        Invocation.method(
-          #findByName,
-          [groupName],
-        ),
-        returnValue: _i3.Future<_i4.Group?>.value(),
-        returnValueForMissingStub: _i3.Future<_i4.Group?>.value(),
-      ) as _i3.Future<_i4.Group?>);
-}
-
 /// A class which mocks [CalculateContributionInMainGroup].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCalculateContributionInMainGroup extends _i1.Mock
-    implements _i5.CalculateContributionInMainGroup {
+    implements _i3.CalculateContributionInMainGroup {
   @override
   _i2.Repository get repository => (super.noSuchMethod(
         Invocation.getter(#repository),
@@ -77,15 +51,15 @@ class MockCalculateContributionInMainGroup extends _i1.Mock
         ),
       ) as _i2.Repository);
   @override
-  _i3.Future<List<_i5.Contribution>> splitBill(_i6.Decimal? totalBill) =>
+  _i4.Future<List<_i3.Contribution>> splitBill(_i5.Decimal? totalBill) =>
       (super.noSuchMethod(
         Invocation.method(
           #splitBill,
           [totalBill],
         ),
         returnValue:
-            _i3.Future<List<_i5.Contribution>>.value(<_i5.Contribution>[]),
+            _i4.Future<List<_i3.Contribution>>.value(<_i3.Contribution>[]),
         returnValueForMissingStub:
-            _i3.Future<List<_i5.Contribution>>.value(<_i5.Contribution>[]),
-      ) as _i3.Future<List<_i5.Contribution>>);
+            _i4.Future<List<_i3.Contribution>>.value(<_i3.Contribution>[]),
+      ) as _i4.Future<List<_i3.Contribution>>);
 }
