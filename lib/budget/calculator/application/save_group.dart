@@ -2,11 +2,10 @@ import 'package:couple_budget_calculator/budget/calculator/domain/models.dart';
 import 'package:decimal/decimal.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../domain/service.dart';
 import '../infrastructure/persistence/repository.dart';
 
 part 'save_group.freezed.dart';
-
-const String mainGroupName = "main";
 
 class SaveMainGroup {
   final Repository _repository;
@@ -14,11 +13,13 @@ class SaveMainGroup {
   SaveMainGroup(this._repository);
 
   Future<void> save(SaveGroupInput input) async {
-    final mainGroup = await _repository.findByName(mainGroupName);
+    final loadMainGroup = LoadMainGroup(_repository);
+
+    final mainGroup = await loadMainGroup.loadMainGroup();
     final people = input.members.map((e) => Person(e.name, Decimal.parse(e.income))).toList();
 
     if (mainGroup == null) {
-      final group = Group.load(mainGroupName, people);
+      final group = Group.load(LoadMainGroup.mainGroupName, people);
       await _repository.save(group);
     } else {
       mainGroup.changeParticipants(people);

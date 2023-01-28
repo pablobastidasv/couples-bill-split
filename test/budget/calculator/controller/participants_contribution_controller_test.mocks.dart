@@ -3,13 +3,11 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:couple_budget_calculator/budget/calculator/application/calculate_contribution_main_group.dart'
-    as _i3;
-import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/repository.dart'
     as _i2;
-import 'package:decimal/decimal.dart' as _i5;
+import 'package:decimal/decimal.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -23,43 +21,21 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeRepository_0 extends _i1.SmartFake implements _i2.Repository {
-  _FakeRepository_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [CalculateContributionInMainGroup].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCalculateContributionInMainGroup extends _i1.Mock
-    implements _i3.CalculateContributionInMainGroup {
+    implements _i2.CalculateContributionInMainGroup {
   @override
-  _i2.Repository get repository => (super.noSuchMethod(
-        Invocation.getter(#repository),
-        returnValue: _FakeRepository_0(
-          this,
-          Invocation.getter(#repository),
-        ),
-        returnValueForMissingStub: _FakeRepository_0(
-          this,
-          Invocation.getter(#repository),
-        ),
-      ) as _i2.Repository);
-  @override
-  _i4.Future<List<_i3.Contribution>> splitBill(_i5.Decimal? totalBill) =>
+  _i3.Future<List<_i2.Contribution>> splitBill(_i4.Decimal? totalBill) =>
       (super.noSuchMethod(
         Invocation.method(
           #splitBill,
           [totalBill],
         ),
         returnValue:
-            _i4.Future<List<_i3.Contribution>>.value(<_i3.Contribution>[]),
+            _i3.Future<List<_i2.Contribution>>.value(<_i2.Contribution>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i3.Contribution>>.value(<_i3.Contribution>[]),
-      ) as _i4.Future<List<_i3.Contribution>>);
+            _i3.Future<List<_i2.Contribution>>.value(<_i2.Contribution>[]),
+      ) as _i3.Future<List<_i2.Contribution>>);
 }
