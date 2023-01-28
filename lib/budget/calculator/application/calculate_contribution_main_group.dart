@@ -1,7 +1,10 @@
 import 'package:couple_budget_calculator/budget/calculator/domain/service.dart';
 import 'package:decimal/decimal.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../infrastructure/persistence/repository.dart';
+
+part 'calculate_contribution_main_group.freezed.dart';
 
 class CalculateContributionInMainGroup {
   final Repository _repository;
@@ -24,9 +27,10 @@ class CalculateContributionInMainGroup {
   }
 }
 
-class Contribution {
-  final String name;
-  final Decimal contribution;
-
-  Contribution(this.name, this.contribution);
+@freezed
+class Contribution with _$Contribution {
+  factory Contribution(
+    String name,
+    Decimal contribution,
+  ) = _Contribution;
 }
