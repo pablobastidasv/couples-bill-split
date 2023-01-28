@@ -12,11 +12,19 @@ abstract class Repository {
 
 class IsarRepository implements Repository {
   final Isar isar;
+
   IsarRepository(this.isar);
 
   @override
   Future<void> save(Group group) async {
-    final isarGroupModel = GroupIsarModel()..name = group.name;
+    final isarGroupModel = GroupIsarModel()
+      ..name = group.name
+      ..participants = group.people
+          .map((e) => ParticipantIsarModel()
+            ..name = e.name
+            ..income = e.income.toString())
+          .toList();
+
     await isar.writeTxn(() async {
       await isar.groupIsarModels.put(isarGroupModel);
     });

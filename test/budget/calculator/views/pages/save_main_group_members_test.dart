@@ -17,7 +17,7 @@ main() {
       saveMainGroupProvider.overrideWith((_) => saver),
     ],
     child: const MaterialApp(
-      home: Scaffold(body: Settings()),
+      home: Scaffold(body: SettingsPage()),
     ),
   );
 

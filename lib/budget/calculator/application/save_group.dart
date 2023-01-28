@@ -14,7 +14,7 @@ class SaveMainGroup {
   SaveMainGroup(this._repository);
 
   Future<void> save(SaveGroupInput input) async {
-    final mainGroup = await _repository.findByName('main');
+    final mainGroup = await _repository.findByName(mainGroupName);
     final people = input.members.map((e) => Person(e.name, Decimal.parse(e.income))).toList();
 
     if (mainGroup == null) {

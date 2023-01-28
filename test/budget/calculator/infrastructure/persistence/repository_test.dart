@@ -54,8 +54,8 @@ void main() {
         final savedGroup = await repository.findByName(groupName);
         expect(savedGroup, isNotNull);
         expect(savedGroup!.name, group.name);
-        expect(group.people, isNotEmpty);
-        expect(group.people, containsAll(group.people));
+        expect(savedGroup.people, isNotEmpty);
+        expect(savedGroup.people, containsAll(group.people));
       },
     );
   });

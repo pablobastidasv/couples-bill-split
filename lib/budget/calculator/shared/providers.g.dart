@@ -39,7 +39,7 @@ final isarProvider = FutureProvider<Isar>(
       const bool.fromEnvironment('dart.vm.product') ? null : _$isarHash,
 );
 typedef IsarRef = FutureProviderRef<Isar>;
-String _$repositoryHash() => r'f43b07e77b7dadda751874ea2bda41fa0012314f';
+String _$repositoryHash() => r'6e15e79237e8be67308d40284064aafc03924916';
 
 /// See also [repository].
 final repositoryProvider = FutureProvider<Repository>(

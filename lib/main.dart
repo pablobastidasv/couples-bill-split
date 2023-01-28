@@ -4,5 +4,5 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'core/views/my_app_widget.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(ProviderScope(child: MyApp()));
 }

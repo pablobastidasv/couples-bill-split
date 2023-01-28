@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:couple_budget_calculator/budget/calculator/application/calculate_contribution_main_group.dart';
 import 'package:couple_budget_calculator/budget/calculator/controller/participants_contribution_controller.dart';
+import 'package:couple_budget_calculator/core/views/app_router.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -10,8 +12,19 @@ class BudgetCalculatorPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
-      body: SafeArea(
+
+    goToSettings(){
+      context.router.push(const SettingsRoute());
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Split the bill"),
+        actions: [
+          IconButton(key: const Key("btnSettingsMenu"), onPressed: goToSettings, icon: const Icon(Icons.settings)),
+        ],
+      ),
+      body: const SafeArea(
         child: Padding(
           padding: EdgeInsets.all(8.0),
           child: Center(

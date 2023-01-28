@@ -1,17 +1,21 @@
-import 'package:couple_budget_calculator/budget/calculator/views/pages/budget_calculator.dart';
 import 'package:flutter/material.dart';
 
+import 'app_router.dart';
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const BudgetCalculatorPage(),
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
     );
   }
 }
