@@ -4,17 +4,27 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'save_group_controller.g.dart';
 
+// @riverpod
+// class SaveMainGroupController extends _$SaveMainGroupController {
+//   @override
+//   FutureOr<void> build() => null;
+//
+//   Future<void> save(List<Member> members) async {
+//     state = const AsyncLoading();
+//     state = await AsyncValue.guard(() async {
+//       final saver = await ref.read(saveMainGroupActionProvider);
+//       await saver.save(input);
+//     });
+//   }
+// }
+
 @riverpod
-class SaveMainGroupController extends _$SaveMainGroupController {
-  @override
-  FutureOr<void> build() => [];
+Future<void> saveMainGroupController(
+  SaveMainGroupControllerRef ref, {
+  required List<Member> members,
+}) async {
+  final saver = await ref.read(saveMainGroupProvider.future);
+  final input = SaveGroupInput(members);
 
-  Future<void> save(List<Member> members) async {
-    state = const AsyncLoading();
-    final saver = await ref.read(saveMainGroupProvider.future);
-    final input = SaveGroupInput(members);
-    await saver.save(input);
-
-    state = const AsyncData(null);
-  }
+  await saver.save(input);
 }

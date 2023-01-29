@@ -29,22 +29,73 @@ class _SystemHash {
   }
 }
 
-String _$SaveMainGroupControllerHash() =>
-    r'1d2e03ba11a05ae7d672be84a282044f24a9906a';
+String _$saveMainGroupControllerHash() =>
+    r'6b725d469e8386e9a7e4b9f804eece09578218cb';
 
-/// See also [SaveMainGroupController].
-final saveMainGroupControllerProvider =
-    AutoDisposeAsyncNotifierProvider<SaveMainGroupController, void>(
-  SaveMainGroupController.new,
-  name: r'saveMainGroupControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$SaveMainGroupControllerHash,
-);
-typedef SaveMainGroupControllerRef = AutoDisposeAsyncNotifierProviderRef<void>;
+/// See also [saveMainGroupController].
+class SaveMainGroupControllerProvider extends AutoDisposeFutureProvider<void> {
+  SaveMainGroupControllerProvider({
+    required this.members,
+  }) : super(
+          (ref) => saveMainGroupController(
+            ref,
+            members: members,
+          ),
+          from: saveMainGroupControllerProvider,
+          name: r'saveMainGroupControllerProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$saveMainGroupControllerHash,
+        );
 
-abstract class _$SaveMainGroupController
-    extends AutoDisposeAsyncNotifier<void> {
+  final List<Member> members;
+
   @override
-  FutureOr<void> build();
+  bool operator ==(Object other) {
+    return other is SaveMainGroupControllerProvider && other.members == members;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, members.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef SaveMainGroupControllerRef = AutoDisposeFutureProviderRef<void>;
+
+/// See also [saveMainGroupController].
+final saveMainGroupControllerProvider = SaveMainGroupControllerFamily();
+
+class SaveMainGroupControllerFamily extends Family<AsyncValue<void>> {
+  SaveMainGroupControllerFamily();
+
+  SaveMainGroupControllerProvider call({
+    required List<Member> members,
+  }) {
+    return SaveMainGroupControllerProvider(
+      members: members,
+    );
+  }
+
+  @override
+  AutoDisposeFutureProvider<void> getProviderOverride(
+    covariant SaveMainGroupControllerProvider provider,
+  ) {
+    return call(
+      members: provider.members,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'saveMainGroupControllerProvider';
 }

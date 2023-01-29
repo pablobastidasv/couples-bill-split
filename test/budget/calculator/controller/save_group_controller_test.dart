@@ -28,20 +28,20 @@ void main() {
       final container = makeProviderContainer(mainGroupSaver);
       final expectedMembers = [createContributor(), createContributor()];
 
-      final controller = container.read(saveMainGroupControllerProvider.notifier);
-      await controller.save(expectedMembers);
-
-      final input = verify(mainGroupSaver.save(captureAny)).captured.first as SaveGroupInput;
-
-      final state = container.listen(saveMainGroupControllerProvider, (_, __) {});
-
-      state.read().maybeWhen(
+      container.listen(
+        saveMainGroupControllerProvider(members: expectedMembers),
+        (p, n) {
+          n.maybeWhen(
             orElse: () => expect(1, 2),
-            data: (_) {},
-          );
+            data: (_) {
+              final input = verify(mainGroupSaver.save(captureAny)).captured.first as SaveGroupInput;
 
-      expect(input.members, isNotNull);
-      expect(input.members, containsAll(expectedMembers));
+              expect(input.members, isNotNull);
+              expect(input.members, containsAll(expectedMembers));
+            },
+          );
+        },
+      );
     },
   );
 }

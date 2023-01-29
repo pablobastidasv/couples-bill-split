@@ -16,7 +16,11 @@ class SaveMainGroup {
     final loadMainGroup = LoadMainGroup(_repository);
 
     final mainGroup = await loadMainGroup.loadMainGroup();
-    final people = input.members.map((e) => Person(e.name, Decimal.parse(e.income))).toList();
+    final people = input.members
+        .map(
+          (e) => Person(e.name, Decimal.parse(e.income)),
+        )
+        .toList();
 
     if (mainGroup == null) {
       final group = Group.load(LoadMainGroup.mainGroupName, people);

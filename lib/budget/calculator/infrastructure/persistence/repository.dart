@@ -17,22 +17,38 @@ class IsarRepository implements Repository {
 
   @override
   Future<void> save(Group group) async {
-    final isarGroupModel = GroupIsarModel()
-      ..name = group.name
-      ..participants = group.people
-          .map((e) => ParticipantIsarModel()
-            ..name = e.name
-            ..income = e.income.toString())
-          .toList();
+    final persistedGroup = await _findGroupIsarModelByName(group.name);
 
-    await isar.writeTxn(() async {
-      await isar.groupIsarModels.put(isarGroupModel);
-    });
+    if (persistedGroup == null) {
+      final isarGroupModel = GroupIsarModel()
+        ..name = group.name
+        ..participants = group.people
+            .map((e) => ParticipantIsarModel()
+              ..name = e.name
+              ..income = e.income.toString())
+            .toList();
+
+      await isar.writeTxn(() async {
+        await isar.groupIsarModels.put(isarGroupModel);
+      });
+    } else {
+      persistedGroup
+        ..name = group.name
+        ..participants = group.people
+            .map((e) => ParticipantIsarModel()
+              ..name = e.name
+              ..income = e.income.toString())
+            .toList();
+
+      await isar.writeTxn(() async {
+        await isar.groupIsarModels.put(persistedGroup);
+      });
+    }
   }
 
   @override
   Future<Group?> findByName(String groupName) async {
-    final groupModel = await isar.groupIsarModels.filter().nameEqualTo(groupName).findFirst();
+    final groupModel = await _findGroupIsarModelByName(groupName);
     if (groupModel == null) return null;
 
     return Group.load(
@@ -40,4 +56,8 @@ class IsarRepository implements Repository {
       groupModel.participants?.map((p) => Person(p.name!, Decimal.parse(p.income!))).toList() ?? <Person>[],
     );
   }
+
+  Future<GroupIsarModel?> _findGroupIsarModelByName(String name) =>
+      isar.groupIsarModels.filter().nameEqualTo(name).findFirst();
+
 }

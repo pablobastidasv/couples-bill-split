@@ -74,3 +74,14 @@ final calculateContributionInMainGroupProvider =
 );
 typedef CalculateContributionInMainGroupRef
     = AutoDisposeFutureProviderRef<CalculateContributionInMainGroup>;
+String _$findMainGroupHash() => r'5275b54b0ae06d06bb7618b0528dfd0744286594';
+
+/// See also [findMainGroup].
+final findMainGroupProvider = AutoDisposeFutureProvider<FindMainGroup>(
+  findMainGroup,
+  name: r'findMainGroupProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$findMainGroupHash,
+);
+typedef FindMainGroupRef = AutoDisposeFutureProviderRef<FindMainGroup>;

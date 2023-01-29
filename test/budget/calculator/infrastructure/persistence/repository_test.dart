@@ -35,7 +35,7 @@ void main() {
     );
 
     test(
-      'given a group with people, all the info is persistend',
+      'given a group with people, all the info is persisted',
       () async {
         final groupName = faker.person.name();
         final group = Group.load(groupName, [
@@ -56,6 +56,45 @@ void main() {
         expect(savedGroup!.name, group.name);
         expect(savedGroup.people, isNotEmpty);
         expect(savedGroup.people, containsAll(group.people));
+      },
+    );
+
+    test(
+      'editing a group should return the group edited',
+      () async {
+        final groupName = faker.person.name();
+        final group = Group.load(groupName, [
+          Person(
+            faker.person.name(),
+            Decimal.fromInt(faker.randomGenerator.integer(10000)),
+          ),
+          Person(
+            faker.person.name(),
+            Decimal.fromInt(faker.randomGenerator.integer(10000)),
+          ),
+        ]);
+
+        await repository.save(group);
+
+        var newParticipants = [
+          Person(
+            faker.person.name(),
+            Decimal.fromInt(faker.randomGenerator.integer(10000)),
+          ),
+          Person(
+            faker.person.name(),
+            Decimal.fromInt(faker.randomGenerator.integer(10000)),
+          ),
+        ];
+
+        group.changeParticipants(newParticipants);
+        await repository.save(group);
+
+        final savedGroup = await repository.findByName(groupName);
+        expect(savedGroup, isNotNull);
+        expect(savedGroup!.name, group.name);
+        expect(savedGroup.people, isNotEmpty);
+        expect(savedGroup.people, containsAll(newParticipants));
       },
     );
   });

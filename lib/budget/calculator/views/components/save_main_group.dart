@@ -1,3 +1,5 @@
+import 'package:couple_budget_calculator/budget/calculator/controller/obtain_main_group_controller.dart';
+import 'package:couple_budget_calculator/budget/calculator/controller/save_group_controller.dart';
 import 'package:couple_budget_calculator/budget/calculator/views/form_validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -5,7 +7,6 @@ import 'package:form_validator/form_validator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../application/save_group.dart';
-import '../../shared/providers.dart';
 
 class SaveMainGroupWidget extends HookConsumerWidget {
   const SaveMainGroupWidget({Key? key}) : super(key: key);
@@ -19,60 +20,68 @@ class SaveMainGroupWidget extends HookConsumerWidget {
 
     final formKey = useMemoized(() => GlobalKey<FormState>());
 
-    save() async {
+    final nameValidator = ValidationBuilder().minLength(3).maxLength(50).build();
+    final incomeValidator = ValidationBuilder().isNumber().build();
+
+    save() {
       if (!(formKey.currentState?.validate() ?? false)) return;
 
-      final saver = await ref.read(saveMainGroupProvider.future);
-
-      final input = SaveGroupInput([
+      final members = [
         Member(memberAName.value, memberAIncome.value),
         Member(memberBName.value, memberBIncome.value),
-      ]);
+      ];
 
-      await saver.save(input);
+      ref.read(saveMainGroupControllerProvider(members: members));
     }
 
-    var nameValidator = ValidationBuilder().minLength(3).maxLength(50).build();
-    var incomeValidator = ValidationBuilder().isNumber().build();
+    final initial = ref.watch(obtainMainGroupProvider);
 
-    return Form(
-      key: formKey,
-      child: Column(
-        children: [
-          Text("Member 1"),
-          TextFormField(
-            key: Key("txtMemberAName"),
-            validator: nameValidator,
-            onChanged: (value) => memberAName.value = value,
-            decoration: InputDecoration(labelText: "Name"),
-          ),
-          TextFormField(
-            key: Key("txtMemberAIncome"),
-            validator: incomeValidator,
-            onChanged: (value) => memberAIncome.value = value,
-            decoration: InputDecoration(labelText: "Income"),
-          ),
-          Text("Member 2"),
-          TextFormField(
-            key: Key("txtMemberBName"),
-            validator: nameValidator,
-            onChanged: (value) => memberBName.value = value,
-            decoration: InputDecoration(labelText: "Name"),
-          ),
-          TextFormField(
-            key: Key("txtMemberBIncome"),
-            validator: incomeValidator,
-            onChanged: (value) => memberBIncome.value = value,
-            decoration: InputDecoration(labelText: "Income"),
-          ),
-          ElevatedButton.icon(
-            key: Key("btnSave"),
-            onPressed: save,
-            icon: Icon(Icons.save),
-            label: Text("Save..."),
-          ),
-        ],
+    return initial.when(
+      data: (group) => Form(
+        key: formKey,
+        child: Column(
+          children: [
+            Text("Member 1"),
+            TextFormField(
+              key: Key("txtMemberAName"),
+              validator: nameValidator,
+              initialValue: group?.people[0].name ?? "",
+              onChanged: (value) => memberAName.value = value,
+              decoration: InputDecoration(labelText: "Name"),
+            ),
+            TextFormField(
+              key: Key("txtMemberAIncome"),
+              validator: incomeValidator,
+              initialValue: group?.people[0].income.toStringAsPrecision(2) ?? "",
+              onChanged: (value) => memberAIncome.value = value,
+              decoration: InputDecoration(labelText: "Income"),
+            ),
+            Text("Member 2"),
+            TextFormField(
+              key: Key("txtMemberBName"),
+              validator: nameValidator,
+              initialValue: group?.people[1].name ?? "",
+              onChanged: (value) => memberBName.value = value,
+              decoration: InputDecoration(labelText: "Name"),
+            ),
+            TextFormField(
+              key: Key("txtMemberBIncome"),
+              validator: incomeValidator,
+              initialValue: group?.people[1].income.toStringAsPrecision(2) ?? "",
+              onChanged: (value) => memberBIncome.value = value,
+              decoration: InputDecoration(labelText: "Income"),
+            ),
+            ElevatedButton.icon(
+              key: Key("btnSave"),
+              onPressed: save,
+              icon: Icon(Icons.save),
+              label: Text("Save..."),
+            ),
+          ],
+        ),
       ),
+      error: (e, s) => const Text("Error"),
+      loading: () => const Text("Loading..."),
     );
   }
 }
