@@ -64,8 +64,8 @@ main() {
 
       expect(find.text("Pablo B."), findsOneWidget);
       expect(find.text("Vivi R."), findsOneWidget);
-      expect(find.text("6000"), findsOneWidget);
-      expect(find.text("4500"), findsOneWidget);
+      expect(find.text("6000.00"), findsOneWidget);
+      expect(find.text("4500.00"), findsOneWidget);
     },
   );
 

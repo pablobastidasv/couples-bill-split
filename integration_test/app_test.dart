@@ -15,8 +15,6 @@ void main() {
         await tester.pumpAndSettle();
 
         await configureMainGroup(tester);
-
-        await tester.pageBack();
         await tester.pumpAndSettle();
 
         await splitABill(tester);
@@ -26,12 +24,6 @@ void main() {
 }
 
 Future<void> configureMainGroup(WidgetTester tester) async {
-  final goToSettings = find.byKey(const Key("btnSettingsMenu"));
-  expect(goToSettings, findsOneWidget);
-
-  await tester.tap(goToSettings);
-  await tester.pumpAndSettle();
-
   final memberAName = find.byKey(const Key("txtMemberAName"));
   expect(memberAName, findsOneWidget);
   await tester.enterText(memberAName, "Pablo B.");
@@ -63,7 +55,7 @@ Future<void> splitABill(WidgetTester tester) async {
   await tester.enterText(input, "50");
 
   // Finds the floating action button to tap on.
-  final fab = find.byType(ElevatedButton);
+  final fab = find.byKey(const Key("btnCalculate"));
   await tester.pump();
 
   // Emulate a tap on the floating action button.
@@ -72,9 +64,9 @@ Future<void> splitABill(WidgetTester tester) async {
   // Trigger a frame.
   await tester.pumpAndSettle();
 
-  // Verify the counter increments by 1.
-  expect(find.text('Pablo B.'), findsOneWidget);
-  expect(find.text('Vivi R.'), findsOneWidget);
-  expect(find.text('28.5'), findsOneWidget);
-  expect(find.text('21.5'), findsOneWidget);
+  // Verify the expected items where found.
+  expect(find.text('Pablo B.'), findsNWidgets(2));
+  expect(find.text('Vivi R.'), findsNWidgets(2));
+  expect(find.text('28.50'), findsOneWidget);
+  expect(find.text('21.50'), findsOneWidget);
 }

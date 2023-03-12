@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'participants_contribution_controller.dart';
+part of 'group_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,24 +29,20 @@ class _SystemHash {
   }
 }
 
-String _$ParticipantsContributionControllerHash() =>
-    r'fd4ad46a4b5d6fbe7e6e0f0b5c43121d9e673830';
+String _$GroupNotifierHash() => r'f4d789aa61d2d46db4f04907aa76c26df2a55096';
 
-/// See also [ParticipantsContributionController].
-final participantsContributionControllerProvider =
-    AutoDisposeAsyncNotifierProvider<ParticipantsContributionController,
-        List<Contribution>>(
-  ParticipantsContributionController.new,
-  name: r'participantsContributionControllerProvider',
+/// See also [GroupNotifier].
+final groupNotifierProvider =
+    AutoDisposeAsyncNotifierProvider<GroupNotifier, Group?>(
+  GroupNotifier.new,
+  name: r'groupNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$ParticipantsContributionControllerHash,
+      : _$GroupNotifierHash,
 );
-typedef ParticipantsContributionControllerRef
-    = AutoDisposeAsyncNotifierProviderRef<List<Contribution>>;
+typedef GroupNotifierRef = AutoDisposeAsyncNotifierProviderRef<Group?>;
 
-abstract class _$ParticipantsContributionController
-    extends AutoDisposeAsyncNotifier<List<Contribution>> {
+abstract class _$GroupNotifier extends AutoDisposeAsyncNotifier<Group?> {
   @override
-  FutureOr<List<Contribution>> build();
+  FutureOr<Group?> build();
 }

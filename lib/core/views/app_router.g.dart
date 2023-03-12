@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'obtain_main_group_controller.dart';
+part of 'app_router.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,14 +29,13 @@ class _SystemHash {
   }
 }
 
-String _$obtainMainGroupHash() => r'11c7befaf3acaa90e7ad578aa05656f77381f4f8';
+String _$appRouterHash() => r'd4aceb316283cf5b477f18f07d2741ad189dea8f';
 
-/// See also [obtainMainGroup].
-final obtainMainGroupProvider = AutoDisposeFutureProvider<Group?>(
-  obtainMainGroup,
-  name: r'obtainMainGroupProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$obtainMainGroupHash,
+/// See also [appRouter].
+final appRouterProvider = AutoDisposeProvider<AppRouter>(
+  appRouter,
+  name: r'appRouterProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$appRouterHash,
 );
-typedef ObtainMainGroupRef = AutoDisposeFutureProviderRef<Group?>;
+typedef AppRouterRef = AutoDisposeProviderRef<AppRouter>;

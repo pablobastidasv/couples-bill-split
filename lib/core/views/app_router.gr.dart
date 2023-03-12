@@ -17,10 +17,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    BudgetCalculatorRoute.name: (routeData) {
+    BudgetSplitRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const BudgetCalculatorPage(),
+        child: const BudgetSplitPage(),
       );
     },
     SettingsRoute.name: (routeData) {
@@ -34,7 +34,7 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          BudgetCalculatorRoute.name,
+          BudgetSplitRoute.name,
           path: '/',
         ),
         RouteConfig(
@@ -45,15 +45,15 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [BudgetCalculatorPage]
-class BudgetCalculatorRoute extends PageRouteInfo<void> {
-  const BudgetCalculatorRoute()
+/// [BudgetSplitPage]
+class BudgetSplitRoute extends PageRouteInfo<void> {
+  const BudgetSplitRoute()
       : super(
-          BudgetCalculatorRoute.name,
+          BudgetSplitRoute.name,
           path: '/',
         );
 
-  static const String name = 'BudgetCalculatorRoute';
+  static const String name = 'BudgetSplitRoute';
 }
 
 /// generated route for

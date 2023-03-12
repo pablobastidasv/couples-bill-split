@@ -22,7 +22,7 @@ void main() {
   });
 
   test(
-    'nothing',
+    'given a group, contribution contains the expected values',
     () {
       final personA = Person("Pepa", Decimal.fromInt(6000));
       final personB = Person("Pepe", Decimal.fromInt(4500));

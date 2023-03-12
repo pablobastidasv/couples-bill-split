@@ -17,6 +17,7 @@ class CalculateContributionInMainGroup {
     final group = await loadMainGroup.loadMainGroup();
 
     if (group == null) throw Exception("Main group not defined");
+    if (group.people.length != 2) throw Exception("Only 2 members per group supported");
 
     return group
         .contributionsFor(totalBill)
@@ -25,6 +26,14 @@ class CalculateContributionInMainGroup {
         )
         .toList();
   }
+}
+
+@freezed
+class Contributions with _$Contributions {
+  factory Contributions(
+      Contribution memberA,
+      Contribution memberB,
+      ) = _Contributions;
 }
 
 @freezed

@@ -68,7 +68,7 @@ void main() {
   );
 }
 
-Member createMember() => Member(faker.person.name(), faker.randomGenerator.decimal().toStringAsPrecision(2));
+Member createMember() => Member(faker.person.name(), faker.randomGenerator.decimal().toStringAsFixed(2));
 
 Person createPerson() => Person(faker.person.name(), Decimal.fromInt(faker.randomGenerator.integer(10000)));
 
