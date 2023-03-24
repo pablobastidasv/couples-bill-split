@@ -17,10 +17,9 @@ class MyApp extends ConsumerWidget {
     final appRouter = ref.watch(appRouterProvider);
 
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Split the Bill',
-      theme: ThemeData.from(
-              colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange))
-          .copyWith(
+      theme: ThemeData.from(colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange)).copyWith(
         scaffoldBackgroundColor: const Color(0xffe0ddd0),
         elevatedButtonTheme: ElevatedButtonThemeData(style: raisedButtonStyle),
         appBarTheme: const AppBarTheme(
