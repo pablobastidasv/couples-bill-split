@@ -4,8 +4,8 @@ import 'package:couple_budget_calculator/budget/calculator/shared/providers.dart
 import 'package:couple_budget_calculator/budget/calculator/views/pages/budget_split.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
