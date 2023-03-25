@@ -1,7 +1,8 @@
 name: Flutter release
+
 on:
-  release:
-    types: [published]
+  branches:
+    - 'main'
 
 jobs:
   release:
@@ -50,9 +51,10 @@ jobs:
         run: flutter build appbundle
 
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.6'
+          ruby-version: '3.0'
+          bundler-cache: true
       - name: Cache bundle dependencies
         uses: actions/cache@v2
         with:
