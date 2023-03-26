@@ -67,6 +67,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+      - name: Flutter version
+        run: flutter --version
       - name: Install Flutter dependencies
         run: flutter pub get
       - name: Run integration tests
@@ -88,13 +90,18 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+      - name: Flutter version
+        run: flutter --version
       - name: Install Flutter dependencies
         run: flutter pub get
+      - name: List Devices
+        # more info on https://github.com/ReactiveCircus/android-emulator-runner
+        run: avdmanager list device
       - name: Run integration tests
         # more info on https://github.com/ReactiveCircus/android-emulator-runner
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
           arch: x86_64
-          profile: Pixel 6
+          profile: Nexus 6
           script: flutter test integration_test --verbose
