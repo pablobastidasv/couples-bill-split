@@ -94,9 +94,6 @@ jobs:
         run: flutter --version
       - name: Install Flutter dependencies
         run: flutter pub get
-      - name: List Devices
-        # more info on https://github.com/ReactiveCircus/android-emulator-runner
-        run: avdmanager list device
       - name: Run integration tests
         # more info on https://github.com/ReactiveCircus/android-emulator-runner
         uses: reactivecircus/android-emulator-runner@v2
