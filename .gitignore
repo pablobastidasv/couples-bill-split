@@ -45,3 +45,4 @@ app.*.map.json
 
 # Isar DB
 libisar.dylib
+*.isar*
