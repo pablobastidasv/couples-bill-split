@@ -10,8 +10,9 @@ import '../components/bill_input_and_group_preview.dart';
 import '../components/split_bill_result.dart';
 import '../controller/group_notifier.dart';
 
+@RoutePage()
 class BudgetSplitPage extends ConsumerWidget {
-  const BudgetSplitPage({Key? key}) : super(key: key);
+  const BudgetSplitPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -109,7 +110,7 @@ class _Calculator extends HookConsumerWidget {
 class CalculateButton extends StatelessWidget {
   final VoidCallback? onPress;
 
-  const CalculateButton({Key? key, required this.onPress}) : super(key: key);
+  const CalculateButton({super.key, required this.onPress});
 
   @override
   Widget build(BuildContext context) {

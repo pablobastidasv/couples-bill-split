@@ -6,7 +6,7 @@ class BillInputAndGroupPreview extends StatelessWidget {
   final Group group;
   final TextEditingController controller;
 
-  const BillInputAndGroupPreview({Key? key, required this.group, required this.controller}) : super(key: key);
+  const BillInputAndGroupPreview({super.key, required this.group, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +38,10 @@ class ParticipantsPreview extends StatelessWidget {
   final Person memberB;
 
   const ParticipantsPreview({
-    Key? key,
+    super.key,
     required this.memberA,
     required this.memberB,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +120,9 @@ class BillInput extends StatelessWidget {
   final TextEditingController controller;
 
   const BillInput({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -165,11 +165,11 @@ class RoundedBoxContainer extends StatelessWidget {
   final double height;
 
   const RoundedBoxContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.color = const Color.fromARGB(255, 235, 185, 84),
     this.height = 200,
-  }) : super(key: key);
+  });
 
   final _boxShadow = const BoxShadow(
     color: Colors.black26,

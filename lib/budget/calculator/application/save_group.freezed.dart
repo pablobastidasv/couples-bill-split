@@ -12,7 +12,7 @@ part of 'save_group.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SaveGroupInput {
@@ -57,22 +57,22 @@ class _$SaveGroupInputCopyWithImpl<$Res, $Val extends SaveGroupInput>
 }
 
 /// @nodoc
-abstract class _$$_SaveGroupInputCopyWith<$Res>
+abstract class _$$SaveGroupInputImplCopyWith<$Res>
     implements $SaveGroupInputCopyWith<$Res> {
-  factory _$$_SaveGroupInputCopyWith(
-          _$_SaveGroupInput value, $Res Function(_$_SaveGroupInput) then) =
-      __$$_SaveGroupInputCopyWithImpl<$Res>;
+  factory _$$SaveGroupInputImplCopyWith(_$SaveGroupInputImpl value,
+          $Res Function(_$SaveGroupInputImpl) then) =
+      __$$SaveGroupInputImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Member> members});
 }
 
 /// @nodoc
-class __$$_SaveGroupInputCopyWithImpl<$Res>
-    extends _$SaveGroupInputCopyWithImpl<$Res, _$_SaveGroupInput>
-    implements _$$_SaveGroupInputCopyWith<$Res> {
-  __$$_SaveGroupInputCopyWithImpl(
-      _$_SaveGroupInput _value, $Res Function(_$_SaveGroupInput) _then)
+class __$$SaveGroupInputImplCopyWithImpl<$Res>
+    extends _$SaveGroupInputCopyWithImpl<$Res, _$SaveGroupInputImpl>
+    implements _$$SaveGroupInputImplCopyWith<$Res> {
+  __$$SaveGroupInputImplCopyWithImpl(
+      _$SaveGroupInputImpl _value, $Res Function(_$SaveGroupInputImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,7 +80,7 @@ class __$$_SaveGroupInputCopyWithImpl<$Res>
   $Res call({
     Object? members = null,
   }) {
-    return _then(_$_SaveGroupInput(
+    return _then(_$SaveGroupInputImpl(
       null == members
           ? _value._members
           : members // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,8 @@ class __$$_SaveGroupInputCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SaveGroupInput implements _SaveGroupInput {
-  _$_SaveGroupInput(final List<Member> members) : _members = members;
+class _$SaveGroupInputImpl implements _SaveGroupInput {
+  _$SaveGroupInputImpl(final List<Member> members) : _members = members;
 
   final List<Member> _members;
   @override
@@ -108,10 +108,10 @@ class _$_SaveGroupInput implements _SaveGroupInput {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SaveGroupInput &&
+            other is _$SaveGroupInputImpl &&
             const DeepCollectionEquality().equals(other._members, _members));
   }
 
@@ -122,18 +122,19 @@ class _$_SaveGroupInput implements _SaveGroupInput {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SaveGroupInputCopyWith<_$_SaveGroupInput> get copyWith =>
-      __$$_SaveGroupInputCopyWithImpl<_$_SaveGroupInput>(this, _$identity);
+  _$$SaveGroupInputImplCopyWith<_$SaveGroupInputImpl> get copyWith =>
+      __$$SaveGroupInputImplCopyWithImpl<_$SaveGroupInputImpl>(
+          this, _$identity);
 }
 
 abstract class _SaveGroupInput implements SaveGroupInput {
-  factory _SaveGroupInput(final List<Member> members) = _$_SaveGroupInput;
+  factory _SaveGroupInput(final List<Member> members) = _$SaveGroupInputImpl;
 
   @override
   List<Member> get members;
   @override
   @JsonKey(ignore: true)
-  _$$_SaveGroupInputCopyWith<_$_SaveGroupInput> get copyWith =>
+  _$$SaveGroupInputImplCopyWith<_$SaveGroupInputImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -184,19 +185,21 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
 }
 
 /// @nodoc
-abstract class _$$_MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
-  factory _$$_MemberCopyWith(_$_Member value, $Res Function(_$_Member) then) =
-      __$$_MemberCopyWithImpl<$Res>;
+abstract class _$$MemberImplCopyWith<$Res> implements $MemberCopyWith<$Res> {
+  factory _$$MemberImplCopyWith(
+          _$MemberImpl value, $Res Function(_$MemberImpl) then) =
+      __$$MemberImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, String income});
 }
 
 /// @nodoc
-class __$$_MemberCopyWithImpl<$Res>
-    extends _$MemberCopyWithImpl<$Res, _$_Member>
-    implements _$$_MemberCopyWith<$Res> {
-  __$$_MemberCopyWithImpl(_$_Member _value, $Res Function(_$_Member) _then)
+class __$$MemberImplCopyWithImpl<$Res>
+    extends _$MemberCopyWithImpl<$Res, _$MemberImpl>
+    implements _$$MemberImplCopyWith<$Res> {
+  __$$MemberImplCopyWithImpl(
+      _$MemberImpl _value, $Res Function(_$MemberImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -205,7 +208,7 @@ class __$$_MemberCopyWithImpl<$Res>
     Object? name = null,
     Object? income = null,
   }) {
-    return _then(_$_Member(
+    return _then(_$MemberImpl(
       null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -220,8 +223,8 @@ class __$$_MemberCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Member implements _Member {
-  _$_Member(this.name, this.income);
+class _$MemberImpl implements _Member {
+  _$MemberImpl(this.name, this.income);
 
   @override
   final String name;
@@ -234,10 +237,10 @@ class _$_Member implements _Member {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Member &&
+            other is _$MemberImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.income, income) || other.income == income));
   }
@@ -248,12 +251,12 @@ class _$_Member implements _Member {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MemberCopyWith<_$_Member> get copyWith =>
-      __$$_MemberCopyWithImpl<_$_Member>(this, _$identity);
+  _$$MemberImplCopyWith<_$MemberImpl> get copyWith =>
+      __$$MemberImplCopyWithImpl<_$MemberImpl>(this, _$identity);
 }
 
 abstract class _Member implements Member {
-  factory _Member(final String name, final String income) = _$_Member;
+  factory _Member(final String name, final String income) = _$MemberImpl;
 
   @override
   String get name;
@@ -261,6 +264,6 @@ abstract class _Member implements Member {
   String get income;
   @override
   @JsonKey(ignore: true)
-  _$$_MemberCopyWith<_$_Member> get copyWith =>
+  _$$MemberImplCopyWith<_$MemberImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

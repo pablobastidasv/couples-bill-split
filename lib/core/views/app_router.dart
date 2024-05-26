@@ -5,18 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.g.dart';
+
 part 'app_router.gr.dart';
 
-@MaterialAutoRouter(
+@AutoRouterConfig(
   replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
-    AutoRoute(page: BudgetSplitPage, initial: true),
-    AutoRoute(page: SettingsPage),
-  ],
 )
-
 // extend the generated private router
-class AppRouter extends _$AppRouter {}
+class AppRouter extends _$AppRouter {
+  @override
+  List<AutoRoute> get routes => <AutoRoute>[
+        AutoRoute(page: BudgetSplitRoute.page, initial: true),
+        AutoRoute(page: SettingsRoute.page),
+      ];
+}
 
 @riverpod
 AppRouter appRouter(AppRouterRef ref) {

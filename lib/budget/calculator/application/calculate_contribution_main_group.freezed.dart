@@ -12,7 +12,7 @@ part of 'calculate_contribution_main_group.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Contributions {
@@ -82,11 +82,11 @@ class _$ContributionsCopyWithImpl<$Res, $Val extends Contributions>
 }
 
 /// @nodoc
-abstract class _$$_ContributionsCopyWith<$Res>
+abstract class _$$ContributionsImplCopyWith<$Res>
     implements $ContributionsCopyWith<$Res> {
-  factory _$$_ContributionsCopyWith(
-          _$_Contributions value, $Res Function(_$_Contributions) then) =
-      __$$_ContributionsCopyWithImpl<$Res>;
+  factory _$$ContributionsImplCopyWith(
+          _$ContributionsImpl value, $Res Function(_$ContributionsImpl) then) =
+      __$$ContributionsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Contribution memberA, Contribution memberB});
@@ -98,11 +98,11 @@ abstract class _$$_ContributionsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ContributionsCopyWithImpl<$Res>
-    extends _$ContributionsCopyWithImpl<$Res, _$_Contributions>
-    implements _$$_ContributionsCopyWith<$Res> {
-  __$$_ContributionsCopyWithImpl(
-      _$_Contributions _value, $Res Function(_$_Contributions) _then)
+class __$$ContributionsImplCopyWithImpl<$Res>
+    extends _$ContributionsCopyWithImpl<$Res, _$ContributionsImpl>
+    implements _$$ContributionsImplCopyWith<$Res> {
+  __$$ContributionsImplCopyWithImpl(
+      _$ContributionsImpl _value, $Res Function(_$ContributionsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -111,7 +111,7 @@ class __$$_ContributionsCopyWithImpl<$Res>
     Object? memberA = null,
     Object? memberB = null,
   }) {
-    return _then(_$_Contributions(
+    return _then(_$ContributionsImpl(
       null == memberA
           ? _value.memberA
           : memberA // ignore: cast_nullable_to_non_nullable
@@ -126,8 +126,8 @@ class __$$_ContributionsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Contributions implements _Contributions {
-  _$_Contributions(this.memberA, this.memberB);
+class _$ContributionsImpl implements _Contributions {
+  _$ContributionsImpl(this.memberA, this.memberB);
 
   @override
   final Contribution memberA;
@@ -140,10 +140,10 @@ class _$_Contributions implements _Contributions {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Contributions &&
+            other is _$ContributionsImpl &&
             (identical(other.memberA, memberA) || other.memberA == memberA) &&
             (identical(other.memberB, memberB) || other.memberB == memberB));
   }
@@ -154,14 +154,14 @@ class _$_Contributions implements _Contributions {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ContributionsCopyWith<_$_Contributions> get copyWith =>
-      __$$_ContributionsCopyWithImpl<_$_Contributions>(this, _$identity);
+  _$$ContributionsImplCopyWith<_$ContributionsImpl> get copyWith =>
+      __$$ContributionsImplCopyWithImpl<_$ContributionsImpl>(this, _$identity);
 }
 
 abstract class _Contributions implements Contributions {
   factory _Contributions(
           final Contribution memberA, final Contribution memberB) =
-      _$_Contributions;
+      _$ContributionsImpl;
 
   @override
   Contribution get memberA;
@@ -169,7 +169,7 @@ abstract class _Contributions implements Contributions {
   Contribution get memberB;
   @override
   @JsonKey(ignore: true)
-  _$$_ContributionsCopyWith<_$_Contributions> get copyWith =>
+  _$$ContributionsImplCopyWith<_$ContributionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -222,22 +222,22 @@ class _$ContributionCopyWithImpl<$Res, $Val extends Contribution>
 }
 
 /// @nodoc
-abstract class _$$_ContributionCopyWith<$Res>
+abstract class _$$ContributionImplCopyWith<$Res>
     implements $ContributionCopyWith<$Res> {
-  factory _$$_ContributionCopyWith(
-          _$_Contribution value, $Res Function(_$_Contribution) then) =
-      __$$_ContributionCopyWithImpl<$Res>;
+  factory _$$ContributionImplCopyWith(
+          _$ContributionImpl value, $Res Function(_$ContributionImpl) then) =
+      __$$ContributionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, Decimal contribution});
 }
 
 /// @nodoc
-class __$$_ContributionCopyWithImpl<$Res>
-    extends _$ContributionCopyWithImpl<$Res, _$_Contribution>
-    implements _$$_ContributionCopyWith<$Res> {
-  __$$_ContributionCopyWithImpl(
-      _$_Contribution _value, $Res Function(_$_Contribution) _then)
+class __$$ContributionImplCopyWithImpl<$Res>
+    extends _$ContributionCopyWithImpl<$Res, _$ContributionImpl>
+    implements _$$ContributionImplCopyWith<$Res> {
+  __$$ContributionImplCopyWithImpl(
+      _$ContributionImpl _value, $Res Function(_$ContributionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -246,7 +246,7 @@ class __$$_ContributionCopyWithImpl<$Res>
     Object? name = null,
     Object? contribution = null,
   }) {
-    return _then(_$_Contribution(
+    return _then(_$ContributionImpl(
       null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -261,8 +261,8 @@ class __$$_ContributionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Contribution implements _Contribution {
-  _$_Contribution(this.name, this.contribution);
+class _$ContributionImpl implements _Contribution {
+  _$ContributionImpl(this.name, this.contribution);
 
   @override
   final String name;
@@ -275,10 +275,10 @@ class _$_Contribution implements _Contribution {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Contribution &&
+            other is _$ContributionImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.contribution, contribution) ||
                 other.contribution == contribution));
@@ -290,13 +290,13 @@ class _$_Contribution implements _Contribution {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ContributionCopyWith<_$_Contribution> get copyWith =>
-      __$$_ContributionCopyWithImpl<_$_Contribution>(this, _$identity);
+  _$$ContributionImplCopyWith<_$ContributionImpl> get copyWith =>
+      __$$ContributionImplCopyWithImpl<_$ContributionImpl>(this, _$identity);
 }
 
 abstract class _Contribution implements Contribution {
   factory _Contribution(final String name, final Decimal contribution) =
-      _$_Contribution;
+      _$ContributionImpl;
 
   @override
   String get name;
@@ -304,6 +304,6 @@ abstract class _Contribution implements Contribution {
   Decimal get contribution;
   @override
   @JsonKey(ignore: true)
-  _$$_ContributionCopyWith<_$_Contribution> get copyWith =>
+  _$$ContributionImplCopyWith<_$ContributionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

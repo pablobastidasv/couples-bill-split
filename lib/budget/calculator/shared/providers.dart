@@ -4,12 +4,21 @@ import 'package:couple_budget_calculator/budget/calculator/application/save_grou
 import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/models.dart';
 import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/repository.dart';
 import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
 
 @Riverpod(keepAlive: true)
-Future<Isar> isar(FutureProviderRef ref) => Isar.open([GroupIsarModelSchema]);
+Future<Isar> isar(FutureProviderRef ref) async {
+  final path = await getApplicationDocumentsDirectory();
+  return Isar.open(
+    [
+      GroupIsarModelSchema,
+    ],
+    directory: path.path,
+  );
+}
 
 @Riverpod(keepAlive: true)
 Future<Repository> repository(RepositoryRef ref) async {

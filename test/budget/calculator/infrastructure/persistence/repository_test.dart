@@ -3,8 +3,10 @@ import 'package:couple_budget_calculator/budget/calculator/infrastructure/persis
 import 'package:couple_budget_calculator/budget/calculator/infrastructure/persistence/repository.dart';
 import 'package:decimal/decimal.dart';
 import 'package:faker/faker.dart' as f;
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   final faker = f.Faker();
@@ -12,9 +14,19 @@ void main() {
   late final Repository repository;
 
   setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
+        const MethodChannel('plugins.flutter.io/path_provider'), (MethodCall methodCall) async {
+      return '.';
+    });
+
     await Isar.initializeIsarCore(download: true);
 
-    isar = await Isar.open([GroupIsarModelSchema]);
+    final path = await getApplicationDocumentsDirectory();
+    isar = await Isar.open(
+      [GroupIsarModelSchema],
+      directory: path.path,
+    );
     repository = IsarRepository(isar);
   });
 

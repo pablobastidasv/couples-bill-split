@@ -9,7 +9,7 @@ import '../../application/save_group.dart';
 import '../controller/group_notifier.dart';
 
 class SaveMainGroupWidget extends HookConsumerWidget {
-  const SaveMainGroupWidget({Key? key}) : super(key: key);
+  const SaveMainGroupWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -1,69 +1,59 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 part of 'app_router.dart';
 
-class _$AppRouter extends RootStackRouter {
-  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+abstract class _$AppRouter extends RootStackRouter {
+  // ignore: unused_element
+  _$AppRouter({super.navigatorKey});
 
   @override
   final Map<String, PageFactory> pagesMap = {
     BudgetSplitRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const BudgetSplitPage(),
       );
     },
     SettingsRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SettingsPage(),
       );
     },
   };
-
-  @override
-  List<RouteConfig> get routes => [
-        RouteConfig(
-          BudgetSplitRoute.name,
-          path: '/',
-        ),
-        RouteConfig(
-          SettingsRoute.name,
-          path: '/settings-page',
-        ),
-      ];
 }
 
 /// generated route for
 /// [BudgetSplitPage]
 class BudgetSplitRoute extends PageRouteInfo<void> {
-  const BudgetSplitRoute()
+  const BudgetSplitRoute({List<PageRouteInfo>? children})
       : super(
           BudgetSplitRoute.name,
-          path: '/',
+          initialChildren: children,
         );
 
   static const String name = 'BudgetSplitRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [SettingsPage]
 class SettingsRoute extends PageRouteInfo<void> {
-  const SettingsRoute()
+  const SettingsRoute({List<PageRouteInfo>? children})
       : super(
           SettingsRoute.name,
-          path: '/settings-page',
+          initialChildren: children,
         );
 
   static const String name = 'SettingsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
