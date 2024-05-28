@@ -14,8 +14,9 @@ void main() {
   late final Isar isar;
   late final Repository repository;
 
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
   setUpAll(() async {
-    IntegrationTestWidgetsFlutterBinding.ensureInitialized();
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
         const MethodChannel('plugins.flutter.io/path_provider'), (MethodCall methodCall) async {
       return '.';
