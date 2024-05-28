@@ -5,6 +5,7 @@ import 'package:decimal/decimal.dart';
 import 'package:faker/faker.dart' as f;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -14,7 +15,7 @@ void main() {
   late final Repository repository;
 
   setUpAll(() async {
-    TestWidgetsFlutterBinding.ensureInitialized();
+    IntegrationTestWidgetsFlutterBinding.ensureInitialized();
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
         const MethodChannel('plugins.flutter.io/path_provider'), (MethodCall methodCall) async {
       return '.';
