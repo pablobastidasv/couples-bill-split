@@ -74,7 +74,7 @@ jobs:
 
   # job responsible for running Flutter tests on Android devices
   android:
-    runs-on: macos-14 # or macos-latest if you prefer, but be aware that the available simulators could be different if you run a different version
+    runs-on: ubuntu-latest
     name: Integration test on Android
     strategy:
       matrix:
@@ -84,6 +84,12 @@ jobs:
       fail-fast: true
     steps:
       - uses: actions/checkout@v4
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
@@ -97,8 +103,9 @@ jobs:
         run: flutter --version
       - name: Install Flutter dependencies
         run: flutter pub get
+
       - name: AVD cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: avd-cache
         with:
           path: |
@@ -111,8 +118,6 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           force-avd-creation: false
-          arch: x86_64
-          channel: canary
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
@@ -122,10 +127,6 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           force-avd-creation: false
-          arch: x86_64
-          channel: canary
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          script: |
-            avdmanager list device
-            flutter test integration_test
+          script: flutter test integration_test
