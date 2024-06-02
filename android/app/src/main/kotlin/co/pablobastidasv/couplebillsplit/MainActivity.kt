@@ -1,4 +1,4 @@
-package com.example.couple_budget_calculator
+package co.pablobastidasv.couplebillsplit
 
 import io.flutter.embedding.android.FlutterActivity
 
