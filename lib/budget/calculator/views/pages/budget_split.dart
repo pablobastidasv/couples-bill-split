@@ -117,7 +117,7 @@ class CalculateButton extends StatelessWidget {
     return ElevatedButton(
       key: const Key("btnCalculate"),
       onPressed: onPress,
-      child: const Text('Calculate...'),
+      child: const Text('Calcular...'),
     );
   }
 }
